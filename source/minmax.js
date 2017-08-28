@@ -3,15 +3,25 @@
 const checkNumber = /-?infinity|-?\d*\.\d+e[+-]?\d+|-?\d*\.\d+|-?\d+e[+-]?\d+|-?\d+/ig;
 
 const minmax = str => {
-    if (typeof(str) !== "string") return [undefined, undefined];
+
+    if (typeof(str) !== "string") {
+        return [undefined, undefined];
+    }
 
     const numbers = str.match(checkNumber);
 
-    if (numbers === null) return [undefined, undefined];
+    if (numbers === null) {
+        return [undefined, undefined];
+    }
 
     return numbers.reduce((minMaxArray, current) => {
-        if (minMaxArray[0] > current) minMaxArray[0] = +current;
-        if (minMaxArray[1] < current) minMaxArray[1] = +current;
+        if (minMaxArray[0] > current) {
+            minMaxArray[0] = +current;
+        }
+        if (minMaxArray[1] < current) {
+            minMaxArray[1] = +current;
+        }
+
         return minMaxArray;
     }, [Infinity, -Infinity]);
 };
