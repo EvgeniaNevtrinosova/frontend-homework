@@ -1,7 +1,10 @@
 "use strict";
+
 const checkNumber = /-?infinity|-?\d*\.\d+e[+-]?\d+|-?\d*\.\d+|-?\d+e[+-]?\d+|-?\d+/ig;
 
 const minmax = str => {
+    if (typeof(str) !== "string") return [undefined, undefined];
+
     const numbers = str.match(checkNumber);
 
     if (numbers === null) return [undefined, undefined];
@@ -11,5 +14,4 @@ const minmax = str => {
         if (minMaxArray[1] < current) minMaxArray[1] = +current;
         return minMaxArray;
     }, [Infinity, -Infinity]);
-
 };
